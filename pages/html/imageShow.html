@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="Copyright" content="" />
+    <!-- 让IE浏览器用最高级内核渲染页面 还有用 Chrome 框架的页面用webkit 内核
+    ================================================== -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <!-- IOS6全屏 Chrome高版本全屏
+    ================================================== -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <!-- 让360双核浏览器用webkit内核渲染页面
+    ================================================== -->
+    <meta name="renderer" content="webkit">
+    <!-- Mobile Specific Metas
+    ================================================== -->
+    <!-- !!!注意 minimal-ui 是IOS7.1的新属性，最小化浏览器UI -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+    <meta name="format-detection" content="telephone=no">
+    <!-- 启用360浏览器的极速模式(webkit) -->
+    <meta name="renderer" content="webkit">
+    <!-- 避免IE使用兼容模式 -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- 针对手持设备优化，主要是针对一些老的不识别viewport的浏览器，比如黑莓 -->
+    <meta name="HandheldFriendly" content="true">
+    <!-- 微软的老式浏览器 -->
+    <meta name="MobileOptimized" content="320">
+    <!-- uc强制竖屏 -->
+    <meta name="screen-orientation" content="portrait">
+    <!-- QQ强制竖屏 -->
+    <meta name="x5-orientation" content="portrait">
+    <!-- UC强制全屏 -->
+    <meta name="full-screen" content="yes">
+    <!-- QQ强制全屏 -->
+    <meta name="x5-fullscreen" content="true">
+    <!-- UC应用模式 -->
+    <meta name="browsermode" content="application">
+    <!-- QQ应用模式 -->
+    <meta name="x5-page-mode" content="app">
+    <!-- windows phone 点击无高光 -->
+    <meta name="msapplication-tap-highlight" content="no">
+
+    <title>相册demo</title>
+
+   <!-- 新 Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <!-- 引入swiper插件css -->
+    <!-- <link rel="stylesheet" href="../css/swiper-3.3.1.min.css"> -->
+    <!-- 新版jquery -->
+    <script type="text/javascript" src="../js/jquery-1.11.0.min.js"></script>
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script type="text/javascript" src="../js/bootstrap.min.js"></script>
+    <!-- 加载lazyload.js -->
+    <script type="text/javascript" src="../js/jquery.lazyload.js"></script>
+    <!-- 引入swiper插件js -->
+    <!-- <script type="text/javascript" src="../js/swiper-3.3.1.jquery.min.js"></script> -->
+    <script type="text/javascript" src="../js/util.js"></script>
+    <style>
+        *{margin: 0;padding:0;}
+        body{
+            font-size: 14px;
+        }
+        body {
+            background-color: #000;
+            background-image: -webkit-linear-gradient(315deg, rgba(255,255,255,0.15) 30%, transparent 30%, transparent 50%, rgba(255,255,255,0.15) 50%, rgba(255,255,255,0.15) 80%, transparent 80%, transparent);
+            background-image: linear-gradient(135deg,rgba(255,255,255,0.15) 30%,transparent 30%,transparent 50%,rgba(255,255,255,0.15) 50%,rgba(255,255,255,0.15) 80%,transparent 80%,transparent);
+            -webkit-background-size: 50px 50px;
+            background-size: 50px 50px;
+            font-family: "Segoe UI","Lucida Grande",Helvetica,Arial,"Microsoft YaHei",FreeSans,Arimo,"Droid Sans","wenquanyi micro hei","Hiragino Sans GB","Hiragino Sans GB W3",Arial,sans-serif;
+        }
+        header{
+            position: relative;
+            padding-bottom: 29.2%;
+            border-bottom: 5px solid #d4ff45;
+        }
+        .h-1{
+            position: absolute;
+            z-index: 1;
+            width: 100%;
+            height: 100%;
+        }
+        .xc-h-img{
+            width: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 0;
+        }
+        .body{
+            min-height: 400px;
+            padding: 15px;
+            max-width: 800px;
+            padding-bottom: 50px;
+        }
+        .body-top{
+            position: relative;
+            padding-bottom: 17.91044776119403%;
+            background-color: #d4ff45;
+            overflow: hidden;
+        }
+        .xc-body-top-img{
+            position: absolute;
+            top: 0;
+            width: 100%;
+        }
+        .body-cont{
+            border-bottom: 3px solid #d4ff45;
+            border-top: 3px solid transparent;
+        }
+        .body-cont>div{
+            margin-left: -3px;
+        }
+        .body-cont:after {
+            content: "";
+            display: block;
+            height: 0;
+            visibility: hidden;
+            clear: both;
+        }
+        .img-box{
+            position: relative;
+            padding: 0;
+            overflow: hidden;
+            border-left: 3px solid transparent;
+        }
+        .img-box>div{
+            border-bottom: 3px solid transparent;
+        }
+        .img-box>div>div{
+            padding-bottom: 100%;
+            background: #d4ff45;
+        }
+        .see-more{
+            position: absolute;
+            display: block;
+            width: 100%;
+            text-align: center;
+            top: 50%;
+            transform: translateY(-50%);
+            -webkit-transform: translateY(-50%);
+        }
+        .see-more span{
+            display: block;
+        }
+        .img-box img{
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+        }
+        footer{
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: #d4ff45;
+        }
+        footer>a{
+            display: block;
+            text-align: center;
+            color: #000;
+            font-size: 18px;
+            padding: 14px 0;
+            line-height: 1;
+        }
+        #body-pop{
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+            background: #000;
+            z-index: 2;
+        }
+        .swiper-container{
+            height: 100%;
+        }
+        .swiper-slide img{
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            max-width: 100%;
+            max-height: 100%;
+            transform: translate(-50%,-50%);
+            -webkit-transform: translate(-50%,-50%);
+        }
+    </style>
+</head>
+<body>
+    <header class="container-fluid">
+        <div class="row h-1">
+            <div class="col-xs-3 col-sm-3 col-md-3"></div>
+        </div>
+        <img class="xc-h-img" src="../img/xc-h1.jpg">
+    </header>
+    <div class="body container-fluid">
+        <div class="body-top">
+            <img class="xc-body-top-img" src="../img/xc-h2.jpg">
+        </div>
+        <div class="body-cont">
+            <div>
+                <div class="col-xs-4 col-sm-4 col-md-4 img-box"><div><div><img class="lazy" data-original="https://linj0218.github.io/pages/img/xc-c1.jpg"></div></div></div>
+                <div class="col-xs-4 col-sm-4 col-md-4 img-box"><div><div><img class="lazy" data-original="https://linj0218.github.io/pages/img/xc-c2.jpg"></div></div></div>
+                <div class="col-xs-4 col-sm-4 col-md-4 img-box"><div><div><img class="lazy" data-original="https://linj0218.github.io/pages/img/xc-c3.jpg"></div></div></div>
+                <div class="col-xs-4 col-sm-4 col-md-4 img-box"><div><div><img class="lazy" data-original="https://linj0218.github.io/pages/img/xc-c4.jpg"></div></div></div>
+                <div class="col-xs-4 col-sm-4 col-md-4 img-box"><div><div><img class="lazy" data-original="https://linj0218.github.io/pages/img/xc-c5.jpg"></div></div></div>
+                <div class="col-xs-4 col-sm-4 col-md-4 img-box"><div><div><img class="lazy" data-original="https://linj0218.github.io/pages/img/xc-c6.jpg"></div></div></div>
+                <div class="col-xs-4 col-sm-4 col-md-4 img-box"><div><div><img class="lazy" data-original="https://linj0218.github.io/pages/img/xc-c7.jpg"></div></div></div>
+                <div class="col-xs-4 col-sm-4 col-md-4 img-box"><div><div><img class="lazy" data-original="https://linj0218.github.io/pages/img/xc-c8.jpg"></div></div></div>
+                <div class="col-xs-4 col-sm-4 col-md-4 img-box"><div><div><div class="see-more"><span>查看全部</span><span>(73)</span></div></div></div></div>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <a href="javascript:void(0);">预约 NRC 跑步课程</a>
+    </footer>
+
+    <script type="text/javascript">
+        var mobj = function(){};
+        mobj.prototype = {
+            init : function(){
+                $("img.lazy").lazyload({effect: "fadeIn"});
+                this.events();
+            },
+            getImgList : function(){
+                var list = [];
+                var ibl = document.getElementsByClassName("img-box");
+                for(var i=0; i<ibl.length-1; i++){
+                    var s = ibl[i].getElementsByTagName("img")[0].dataset.original;
+                    list.push(s);
+                }
+                return list;
+            },
+            events : function(){
+                var imgUrls = this.getImgList();
+                var bc = document.getElementsByClassName("body-cont")[0];
+                bc.addEventListener("click", function(e){
+                    e.preventDefault();
+                    var event = e || window.event;
+                    var target = event.target || event.srcElement;
+                    if(target.tagName.toLowerCase() == "img"){
+                        if(isWechatBrower()){
+                            imagePreview(target.dataset.original, imgUrls);
+                        }else {
+                            /* 加载swiper css文件 */
+                            if(!document.getElementById("swiper-id")){
+                                var l = document.createElement('link');
+                                l.rel = 'stylesheet';  
+                                l.href = '../css/swiper-3.3.1.min.css';  
+                                /* 加载swiper js文件 */
+                                var s = document.createElement('script');  
+                                s.id = 'swiper-id';
+                                s.type = 'text/javascript';  
+                                s.src = '../js/swiper-3.3.1.jquery.min.js';  
+                                var x = document.getElementsByTagName('script')[0];  
+                                x.parentNode.insertBefore(l, x);
+                                x.parentNode.insertBefore(s, x); 
+                                if (!/*@cc_on!@*/0) { //if not IE
+                                    //Firefox2、Firefox3、Safari3.1+、Opera9.6+ support js.onload
+                                    s.onload = function () {
+                                        _initSwiper();
+                                    }
+                                } else {
+                                    //IE6、IE7 support js.onreadystatechange
+                                    s.onreadystatechange = function () {
+                                        if (s.readyState == 'loaded' || s.readyState == 'complete') {
+                                            _initSwiper();
+                                        }
+                                    }
+                                }
+                            }else {
+                                _initSwiper();
+                            }
+                            function _initSwiper(){
+                                var h = '';
+                                var imgIndex = 0;
+                                h += '<div id="body-pop">';
+                                h += '  <div class="swiper-container">';
+                                h += '      <div class="swiper-wrapper">';
+
+                                for(var i=0; i<imgUrls.length; i++){
+                                    if(target.dataset.original == imgUrls[i]){
+                                        imgIndex = i;
+                                    }
+                                    h += '      <div class="swiper-slide">';
+                                    h += '          <img src="' + imgUrls[i] + '">';
+                                    h += '      </div>';
+                                }
+
+                                h += '      </div>';
+                                h += '      <div class="swiper-pagination"></div>';
+                                h += '  </div>';
+                                h += '</div>';
+                                $(".body").append(h);
+                                var swiper = new Swiper('.swiper-container',{
+                                    initialSlide : imgIndex,        //初始位置
+                                    direction : 'horizontal',   //水平：horizontal，垂直：vertical
+                                    autoplay : 0,        //自动播放
+                                    speed:300,              //滑动速度
+                                    effect : 'slide',       //"slide"（位移切换）"fade"（淡入）"cube"（方块）"coverflow"（3d流）
+                                    pagination : '.swiper-pagination',  //分页器
+                                    loop : false,            //循环切换
+                                })
+                                /* 关闭 */
+                                var bodyPop = document.getElementById("body-pop");
+                                if(bodyPop){
+                                    bodyPop.onclick = function(){
+                                        this.parentElement.removeChild(this);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }, false);
+            }
+        }
+        new mobj().init();
+    </script>
+</body>
+</html>

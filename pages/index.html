@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>请叫我杰哥QAQ</title>
+    <link rel="stylesheet" href="./css/bootstrap.min.css">
+
+    <script src="./js/jquery.min.js"></script>
+    <script src="./js/bootstrap.min.js"></script>
+    <script src="./js/util.js"></script>
+
+    <style type="text/css">
+    	html,body{height: 100%;}
+    	.navbar {
+		    margin: 0;
+		}
+		#navbar-left{
+			position: fixed;
+			width: 150px;
+		    top: 51px;
+		    left: 0;
+		    height: 100%;
+		}
+		.panel-group .panel {
+		    border-radius: 0;
+		    border-top: 0;
+		}
+		.panel-group .panel+.panel {
+		    margin-top: 0;
+		}
+		#page-content{
+			position: fixed;
+		    min-width: 950px;
+		    top: 51px;
+		    left: 150px;
+		    height: 100%;
+		    padding: 10px;
+		}
+    </style>
+</head>
+<body>
+	<nav class="navbar navbar-default navbar-static-top">
+		<div class="container-fluid">
+			<!-- Brand and toggle get grouped for better mobile display -->
+			<div class="navbar-header">
+			  	<a class="navbar-brand" href="#">请叫我杰哥QAQ</a>
+			</div>
+
+			<!-- Collect the nav links, forms, and other content for toggling -->
+			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+				<ul class="nav navbar-nav" style="display: none;">
+					<li class="active"><a href="#"> 首页 </a></li>
+					<li class="dropdown">
+					  	<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+					  		前端 <span class="caret"></span>
+					  	</a>
+					  	<ul class="dropdown-menu">
+					        <li><a href="#demo">显得很牛逼</a></li>
+					        <li><a href="#demo2">看得出来很牛逼</a></li>
+					        <li role="separator" class="divider"></li>
+					        <li><a href="#">Separated link</a></li>
+					  	</ul>
+					</li>
+				</ul>
+				<ul class="nav navbar-nav navbar-right">
+					<li><p class="navbar-text" id="now-time"></p></li>
+					<li><a href="#"> 关于我 </a></li>
+				</ul>
+			</div><!-- /.navbar-collapse -->
+		</div><!-- /.container-fluid -->
+	</nav>
+	<div class="panel-group" id="navbar-left" style="width: 150px;">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#navbar-left" href="#collapseOne">
+                        group 1
+                    </a>
+                </h4>
+            </div>
+            <div id="collapseOne" class="panel-collapse collapse">
+                <div class="panel-body">
+                    <div class="btn-group-vertical" role="group">
+						<button type="button" class="btn btn-default">滚动正方体</button>
+						<button type="button" class="btn btn-default">demo1</button>
+					</div>
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#navbar-left" href="#collapseTwo">
+                        group 2
+                    </a>
+                </h4>
+            </div>
+            <div id="collapseTwo" class="panel-collapse collapse">
+                <div class="panel-body">
+                    Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo.
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#navbar-left" href="#collapseThree">
+                        group 3
+                    </a>
+                </h4>
+            </div>
+            <div id="collapseThree" class="panel-collapse collapse">
+                <div class="panel-body">
+                    Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo.
+                </div>
+            </div>
+        </div>
+    </div>
+	<div id="page-content"></div>
+</body>
+<script type="text/javascript" src="./js/timer.js"></script>
+<script type="text/javascript" src="./js/navigation.js"></script>
+</html>
